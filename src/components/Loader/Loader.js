@@ -14,9 +14,7 @@ class Loader extends Component {
     render() {
         return (
             <div>
-                {/* <div v-show="isShowLoader" class="loaderPanel flex-column-h-center-v-center">
-                    <div class="loader"></div>
-                </div> */}
+                
             </div>
         );
     }
