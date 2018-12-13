@@ -13,7 +13,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div class="container-fluid">
+            <div className="container-fluid">
                 <h1>This is home page</h1>
             </div>
         );

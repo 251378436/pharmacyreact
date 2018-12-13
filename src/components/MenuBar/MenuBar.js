@@ -13,16 +13,16 @@ class MenuBar extends Component {
 
     render() {
         return (
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-4 text-center">
-                        <i class="fas fa-home"></i>
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-4 text-center">
+                        <i className="fa fa-home"></i>
                     </div>
-                    <div class="col-4 text-center" >
-                        <i class="fas fa-cart-arrow-down"></i>
+                    <div className="col-4 text-center" >
+                        <i className="fa fa-cart-arrow-down"></i>
                     </div>
-                    <div class="col-4 text-center">
-                        <i class="fas fa-user-circle"></i>
+                    <div className="col-4 text-center">
+                        <i className="fa fa-user-circle"></i>
                     </div>
                 </div>
             </div>
