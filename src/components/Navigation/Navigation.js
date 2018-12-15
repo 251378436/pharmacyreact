@@ -37,7 +37,7 @@ class Navigation extends Component {
                 <ul className="list-group">
                 {this.state.categories.map((category) =>
                     <li key={category.id} 
-                    className={classnames('list-group-item', {'active': this.props.selectedCategoryId == category.id})}
+                    className={classnames('list-group-item ' + navigationStyles.navigation, {'active': this.props.selectedCategoryId == category.id})}
                     onClick={() => this.changeSelectedCategoryId(category.id)}>
                         {category.displayName}
                     </li>
