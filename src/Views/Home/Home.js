@@ -84,10 +84,40 @@ class Home extends Component {
         }
     }
 
+    getFilteredProductsBySearch() {
+        if(this.state.searchText) {
+            this.setState(prevState => {
+                var criterias = this.state.searchText.trim().split(' ');
+                var newFilteredProducts = [...prevState.products];
+                criterias.forEach(criteria => {
+                    newFilteredProducts = newFilteredProducts.filter(p => p.description.toLowerCase().includes(criteria.toLowerCase()));
+                });
+
+                return {
+                    filteredProducts: newFilteredProducts,
+                    selectedCategoryId: '',
+                    searchText: prevState.searchText.trim()
+                }
+            })
+        } 
+    }
+
     changeCategory(id) {
         this.setState({ selectedCategoryId: id }, () => {
             this.getFilteredProductsById();
         });
+    }
+
+    showProductPhoto(id) {
+        this.setState(prevState => {
+            const newProducts = [...prevState.products];
+            newProducts.filter(x => x.id === id).map(x => {
+                x.showPhoto = true;
+                return x;
+            });
+            return {products: newProducts}
+        })
+
     }
 
     render() {
@@ -95,9 +125,9 @@ class Home extends Component {
             <div id="home">
                 <div id="search">
                     <div className="input-group">
-                        <input type="text" className="form-control" placeholder="查找你需要购买的物品" />
+                        <input type="text" className="form-control" value={this.state.searchText} onChange={(e) => {this.setState({searchText: e.target.value});}} placeholder="查找你需要购买的物品" />
                         <div className="input-group-append">
-                            <button className="btn btn-primary" type="button" >
+                            <button className="btn btn-primary" type="button" onClick={() => this.getFilteredProductsBySearch()} >
                                 <i className="fa fa-search"></i>
                             </button>
                         </div>
@@ -111,7 +141,7 @@ class Home extends Component {
                         <div className="row">
                         {this.state.filteredProducts.map((product) =>
                             <div className="card card-special" key={product.id}>
-                                <img  className="card-img-top" src={product.showPhoto ? product.photoUrl : ''} alt="点击显示图片" />
+                                <img  className="card-img-top" src={product.showPhoto ? product.photoUrl : ''} alt="点击显示图片" onClick={() => this.showProductPhoto(product.id)} />
                                 <div className="card-body">
                                     <div className="product-name">
                                         <span>{ product.description }</span>  
@@ -128,6 +158,11 @@ class Home extends Component {
                                         }
                                         
                                     </div>
+                                </div>
+                                <div className="card-footer">
+                                    <button type="button" title="添加到购物车" className="btn btn-cart">
+                                        <span>添加到购物车</span>
+                                    </button>
                                 </div>
                             </div>
                         )}
