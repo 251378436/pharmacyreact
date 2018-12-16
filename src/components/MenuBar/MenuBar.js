@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import {withRouter} from 'react-router-dom';
 
 const menuBarStyles = require('./MenuBar.less');
 
@@ -17,6 +18,8 @@ class MenuBar extends Component {
     changePage(item) {
         this.setState({
             selectedPage: item,
+        }, () => {
+            this.props.history.push('/' + item);
         });
     }
 
@@ -39,4 +42,4 @@ class MenuBar extends Component {
     }
 }
 
-export default MenuBar;
+export default withRouter(MenuBar);

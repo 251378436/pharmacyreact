@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import {connect} from "react-redux";
 
 import Navigation from '@/components/Navigation/Navigation';
 import {Product} from '@/Models/Product';
+import {addToCart} from '@/Redux/actions/defaultActions';
 
 const homwStyles = require('./Home.less');
 
@@ -160,7 +162,7 @@ class Home extends Component {
                                     </div>
                                 </div>
                                 <div className="card-footer">
-                                    <button type="button" title="添加到购物车" className="btn btn-cart">
+                                    <button type="button" title="添加到购物车" className="btn btn-cart" onClick={() => this.props.addToCart(product.id)}>
                                         <span>添加到购物车</span>
                                     </button>
                                 </div>
@@ -174,4 +176,14 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        defaultReducer: state.defaultReducer,
+    };
+  };
+  
+  const mapDispatchToProps = {
+    addToCart,
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Home);
