@@ -3,10 +3,10 @@ import logger from 'redux-logger';
 import thunk from "redux-thunk";
 import promise from 'redux-promise-middleware';
 
-import defaultReducer from '@/Redux/reducers/defaultReducer';
+import reducer from '@/Redux/reducers/defaultReducer';
 
 export default createStore(
-    combineReducers({defaultReducer}),
+    combineReducers({reducer}),
     {}, 
     applyMiddleware(logger, thunk, promise())
 );

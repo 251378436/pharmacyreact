@@ -178,7 +178,7 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        defaultReducer: state.defaultReducer,
+        reducer: state.reducer,
     };
   };
   

@@ -5,6 +5,8 @@ import Loader from './components/Loader/Loader';
 import MenuBar from './components/MenuBar/MenuBar';
 import Home from './Views/Home/Home';
 import ShoppingCart from './Views/ShoppingCart/ShoppingCart';
+import Login from './Views/Login/Login';
+import Profile from './Views/Profile/Profile';
 
 class App extends Component {
   render() {
@@ -15,6 +17,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/shoppingcart" component={ShoppingCart} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/profile" component={Profile} />
           </div>
           <footer>
             <MenuBar />

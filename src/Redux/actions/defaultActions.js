@@ -16,10 +16,17 @@ export const addToCart = (productId) => dispatch => {
     }
 }
 
-export function subtractNumber(number) {
-    return {
-        type: "SUBTRACT",
-        payload: number
-    }
+export const showLoader = () => dispatch => {
+    dispatch({
+        type: "showLoader",
+        payload: true
+    });
+}
+
+export const hideLoader = () => dispatch => {
+    dispatch({
+        type: "hideLoader",
+        payload: false
+    });
 }
 
