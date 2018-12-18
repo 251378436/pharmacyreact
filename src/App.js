@@ -8,6 +8,8 @@ import ShoppingCart from './Views/ShoppingCart/ShoppingCart';
 import Login from './Views/Login/Login';
 import Profile from './Views/Profile/Profile';
 
+import PrivateRoute from '@/Services/PrivateRoute';
+
 class App extends Component {
   render() {
     return (
@@ -18,7 +20,9 @@ class App extends Component {
             <Route exact path="/home" component={Home} />
             <Route exact path="/shoppingcart" component={ShoppingCart} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/profile" component={Profile} />
+            <Switch>
+              <PrivateRoute exact path="/profile" component={Profile} />
+            </Switch>
           </div>
           <footer>
             <MenuBar />

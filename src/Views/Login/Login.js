@@ -20,6 +20,9 @@ class Login extends Component {
         setTimeout(() => {
             self.props.hideLoader();
         }, 1000);
+
+        console.log(this.state);
+        console.log(this.props);
     }
 
     render() {
