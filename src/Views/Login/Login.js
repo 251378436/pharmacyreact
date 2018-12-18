@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom';
+import queryString from 'query-string';
 import classnames from 'classnames';
 import {connect} from "react-redux";
+import {UserService} from '@/Services/UserService';
 
 import {showLoader, hideLoader} from '@/Redux/actions/defaultActions';
 
@@ -14,15 +17,26 @@ class Login extends Component {
     }
 
     userLogin() {
-        this.props.showLoader();
-        var self = this;
+        if(this.state.userName === 'test' && this.state.phoneNumber === '13429193333') {
+            this.props.showLoader();
+            var self = this;
+            UserService.UserLogin(this.state.userName, this.state.phoneNumber);
+            
+            const parsed = queryString.parse(this.props.location.search);
+            if(parsed.redirect) {
+                this.props.history.push(parsed.redirect);
+            } else {
+                this.props.history.push('/profile');
+            }
 
-        setTimeout(() => {
-            self.props.hideLoader();
-        }, 1000);
+            setTimeout(() => {
+                self.props.hideLoader();
+            }, 1000);
 
-        console.log(this.state);
-        console.log(this.props);
+        } else {
+            alert('不正确的用户名或者密码');
+        }
+
     }
 
     render() {
@@ -32,11 +46,11 @@ class Login extends Component {
                     <form className="">
                         <div className="form-group">
                             <label>手机号码:</label>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control" value={this.state.phoneNumber} onChange={(e) => {this.setState({phoneNumber: e.target.value});}} />
                         </div>
                         <div className="form-group">
                             <label>姓名:</label>
-                            <input type="text" className="form-control" />
+                            <input type="text" className="form-control" value={this.state.userName} onChange={(e) => {this.setState({userName: e.target.value});}} />
                         </div>
                         <button type="button" className="btn btn-primary" onClick={() => this.userLogin()} >登陆</button>
                     </form>
@@ -56,4 +70,4 @@ const mapDispatchToProps = {
     hideLoader,
 };
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Login);
+  export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Login));
