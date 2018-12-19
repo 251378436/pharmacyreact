@@ -15,7 +15,7 @@ npm start
 ```
 
 ## Configuration
-You will need to create a webpack.config.dev.js and webpack.config.prod.js in the node_modules\react-scripts\config
+You will need to modify webpack.config.dev.js and webpack.config.prod.js which are under route 'node_modules\react-scripts\config'.
 
 You can use search function to find the location of these points in webpack.config.dev.js and webpack.config.prod.js.
 
@@ -27,7 +27,7 @@ alias: {
     'react-native': 'react-native-web',
 },
 
-#point 2: add use .(css|less) replace .css in the following lines
+#point 2: use .(css|less) replace .css in the following lines
 
 const cssRegex = /\.(css|less)$/;
 const cssModuleRegex = /\.module\.(css|less)$/;
@@ -41,10 +41,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       loader: require.resolve('css-loader'),
       options: cssOptions,
     },
-    {           //add this line 
+    {                                           //add this line 
       loader: require.resolve('less-loader'),   //add this line 
-      options: cssOptions,   //add this line 
-    },    //add this line 
+      options: cssOptions,                      //add this line 
+    },                                          //add this line 
 
 ```
 
