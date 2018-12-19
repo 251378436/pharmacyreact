@@ -1,50 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pharmacyreact
 
-## Available Scripts
+> This is a small react project demo. It includs router, redux, less, model the most common parts in React.
 
-In the project directory, you can run:
+## Quick Start
 
-### `npm start`
+```bash
+# Install dependencies for server
+npm install
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Run the React client 
+npm start
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# Server runs on  http://localhost:3000
+```
 
-### `npm test`
+## Configuration
+You will need to create a webpack.config.dev.js and webpack.config.prod.js in the node_modules\react-scripts\config
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can use search function to find the location of these points in webpack.config.dev.js and webpack.config.prod.js.
 
-### `npm run build`
+```bash
+#point 1: add @ as default src route
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+alias: {
+    '@': path.resolve('src'),      // add this line in alias
+    'react-native': 'react-native-web',
+},
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+#point 2: add use .(css|less) replace .css in the following lines
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const cssRegex = /\.(css|less)$/;
+const cssModuleRegex = /\.module\.(css|less)$/;
+exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/, /\.(css|less)$/],
 
-### `npm run eject`
+#point 3: add less-loader in const loaders
+const getStyleLoaders = (cssOptions, preProcessor) => {
+  const loaders = [
+    require.resolve('style-loader'),
+    {
+      loader: require.resolve('css-loader'),
+      options: cssOptions,
+    },
+    {
+      loader: require.resolve('less-loader'),
+      options: cssOptions,
+    },
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## App Info
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Author
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Brad Traversy
+[Traversy Media](http://www.traversymedia.com)
 
-### `npm run eject`
+### Version
+
+1.0.0
 
 ### License
 
 This project is licensed under the MIT License
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
