@@ -41,10 +41,10 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
       loader: require.resolve('css-loader'),
       options: cssOptions,
     },
-    {
-      loader: require.resolve('less-loader'),
-      options: cssOptions,
-    },
+    {           //add this line 
+      loader: require.resolve('less-loader'),   //add this line 
+      options: cssOptions,   //add this line 
+    },    //add this line 
 
 ```
 
