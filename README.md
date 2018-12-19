@@ -52,8 +52,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 
 ### Author
 
-Brad Traversy
-[Traversy Media](http://www.traversymedia.com)
+Bo Long
 
 ### Version
 
